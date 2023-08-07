@@ -1,0 +1,103 @@
+$TickerLeftToRight: true;
+$Duration: 45000ms;
+$AnimationTickerLeftToRight: AnimationTickerLeftToRight;
+$AnimationTickerRightToLeft: AnimationTickerRightToLeft;
+
+.ticker {
+  display: inline-flex;
+  white-space: nowrap;
+  @if ($TickerLeftToRight) {
+    padding-right: 100%;
+  } @else {
+    padding-left: 100%;
+  }
+  box-sizing: content-box;
+  -moz-animation-duration: $Duration;
+  -webkit-animation-duration: $Duration;
+  animation-duration: $Duration;
+  -moz-animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  @if ($TickerLeftToRight) {
+    -moz-animation-name: $AnimationTickerLeftToRight;
+    -webkit-animation-name: $AnimationTickerLeftToRight;
+    animation-name: $AnimationTickerLeftToRight;
+  } @else {
+    -moz-animation-name: $AnimationTickerRightToLeft;
+    -webkit-animation-name: $AnimationTickerRightToLeft;
+    animation-name: $AnimationTickerRightToLeft;
+  }
+
+  &-wrap {
+    width: 100%;
+    overflow: hidden;
+    @if ($TickerLeftToRight) {
+      direction: rtl;
+    } @else {
+      direction: ltr;
+    }
+  }
+
+  &:hover {
+    animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+  }
+}
+
+@if ($TickerLeftToRight) {
+  @-webkit-keyframes AnimationTickerLeftToRight {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+    }
+
+    100% {
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+
+  @keyframes AnimationTickerLeftToRight {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+    }
+
+    100% {
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+} @else {
+  @-webkit-keyframes AnimationTickerRightToLeft {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+    }
+
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+
+  @keyframes AnimationTickerRightToLeft {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+    }
+
+    100% {
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+}
